@@ -29,7 +29,7 @@ def count_backtracking(quote_type_choice, supposed_type_quotes, end_condition, s
         more = 1 # Win
     if supposed_type_quotes[-5:] in end_condition and supposed_player_turn == backtracking_player:
         more = -1 # Loss
-    elif depth == max_depth:
+    elif depth >= max_depth:
         return 0 # Draw
 
     if supposed_type_quotes[-3:] in [["negative"]*3, ["positive"]*3]:
@@ -38,28 +38,34 @@ def count_backtracking(quote_type_choice, supposed_type_quotes, end_condition, s
         return more + count_backtracking("positive", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth + 1, max_depth) + count_backtracking("negative", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth + 1, max_depth)
 
 # This algorithm count the proximity to the nearest victory
-def near_backtracking(quote_type_choice, supposed_type_quotes, end_condition, supposed_player_turn, backtracking_player, depth, max_depth):
+def near_backtracking(quote_type_choice, supposed_type_quotes, end_condition, supposed_player_turn, backtracking_player, depth, max_depth, near_type):
     supposed_type_quotes.append(quote_type_choice)
     more = 0
     # Victory condition
     if supposed_type_quotes[-5:] in end_condition and supposed_player_turn == 1 - backtracking_player:
-        return depth # Win
+        if near_type == "win": # Win
+            return depth
+        else:
+            return max_depth
     if supposed_type_quotes[-5:] in end_condition and supposed_player_turn == backtracking_player:
-        return max_depth # Loss
+        if near_type == "defeat": # Loss
+            return depth
+        else:
+            return max_depth
     elif depth == max_depth:
         return max_depth # Draw
     else:
         if supposed_type_quotes[-3:] in [["negative"]*3, ["positive"]*3]:
-            return near_backtracking("neutral", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth+1, max_depth)
+            return near_backtracking("neutral", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth+1, max_depth, near_type)
         else:
-            pos_depth = near_backtracking("positive", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth + 1, max_depth)
-            neg_depth = near_backtracking("negative", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth + 1, max_depth)
+            pos_depth = near_backtracking("positive", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth + 1, max_depth, near_type)
+            neg_depth = near_backtracking("negative", supposed_type_quotes, end_condition, 1 - supposed_player_turn, backtracking_player, depth + 1, max_depth, near_type)
             if pos_depth < neg_depth:
                 return pos_depth
             else:
                 return neg_depth
 
-def backtracking_player(backtracking_type, backtracking_player, played_type_quotes, end_condition, type_dict, max_depth):
+def backtracking_player(backtracking_type, backtracking_player, played_type_quotes, end_condition, type_dict, max_depth, near_type):
     if backtracking_type == "naive":
         if naive_backtracking("positive", played_type_quotes.copy(), end_condition, backtracking_player, backtracking_player, 0, max_depth):
             quote_type_choice = "positive"
@@ -78,13 +84,19 @@ def backtracking_player(backtracking_type, backtracking_player, played_type_quot
         else:
             quote_type_choice = random_player(type_dict)
     elif backtracking_type == "near":
-        positive_res = near_backtracking("positive", played_type_quotes.copy(), end_condition, backtracking_player, backtracking_player, 0, max_depth)
-        negative_res = near_backtracking("negative", played_type_quotes.copy(), end_condition, backtracking_player, backtracking_player, 0, max_depth)
+        positive_res = near_backtracking("positive", played_type_quotes.copy(), end_condition, backtracking_player, backtracking_player, 0, max_depth, near_type)
+        negative_res = near_backtracking("negative", played_type_quotes.copy(), end_condition, backtracking_player, backtracking_player, 0, max_depth, near_type)
         # print("neg %s pos %s" %(negative_res, positive_res))
-        if negative_res < positive_res:
-            quote_type_choice = "negative"
-        elif negative_res > positive_res:
-            quote_type_choice = "positive"
-        else:
+        if negative_res == positive_res:
             quote_type_choice = random_player(type_dict)
+        elif near_type == "win":
+            if negative_res < positive_res:
+                quote_type_choice = "negative"
+            elif negative_res > positive_res:
+                quote_type_choice = "positive"
+        elif near_type == "defeat":
+            if negative_res > positive_res:
+                quote_type_choice = "negative"
+            elif negative_res < positive_res:
+                quote_type_choice = "positive"
     return quote_type_choice

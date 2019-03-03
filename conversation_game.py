@@ -34,7 +34,7 @@ def end_game(end_type, winner, played_quotes, played_type_quotes):
         print("Player %s : %s" %(player, type))
         player = 1 - player
 
-def game(verbose, ia_chosen, max_backtracking_depth = 5):
+def game(verbose, ia_chosen, near_type=None, max_backtracking_depth = 5):
     positive_quotes, neutral_quotes, negative_quotes = get_quotes_from_db()
 
     # Define the end condition of the game
@@ -55,7 +55,7 @@ def game(verbose, ia_chosen, max_backtracking_depth = 5):
         # Backtracking player
         else:
             if player_turn == 0:
-                quote_type_choice = ia.backtracking_player(ia_chosen, player_turn, played_type_quotes, end_condition, type_dict, max_backtracking_depth)
+                quote_type_choice = ia.backtracking_player(ia_chosen, player_turn, played_type_quotes, end_condition, type_dict, max_backtracking_depth, near_type)
             else:
                 quote_type_choice = ia.random_player(type_dict) # x = 0 ou x = 1
 
