@@ -78,7 +78,7 @@ def game(verbose, ia_chosen, near_type=None, max_backtracking_depth = 5):
             return winner, played_quotes, played_type_quotes
 
         # End the game with draw
-        if not positive_quotes or not negative_quotes:
+        if not positive_quotes or not negative_quotes or not neutral_quotes:
             if verbose:
                 end_game("draw", 2, played_quotes, played_type_quotes)
             return 2, played_quotes, played_type_quotes

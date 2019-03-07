@@ -1,52 +1,39 @@
-type,quote
-neutral,pe1
-positive,oui1
-negative,non1
-neutral,pe2
-positive,oui2
-negative,non2
-neutral,pe3
-positive,oui3
-negative,non3
-neutral,pe4
-positive,oui4
-negative,non4
-neutral,pe5
-positive,oui5
-negative,non5
-neutral,pe6
-positive,oui6
-negative,non6
-neutral,pe7
-positive,oui7
-negative,non7
-neutral,pe8
-positive,oui8
-negative,non8
-neutral,pe9
-positive,oui9
-negative,non9
-neutral,pe10
-positive,oui10
-negative,non10
-neutral,pe11
-positive,oui11
-negative,non11
-neutral,pe12
-positive,oui12
-negative,non12
-neutral,pe13
-positive,oui13
-negative,non13
-neutral,pe14
-positive,oui14
-negative,non14
-neutral,pe15
-positive,oui15
-negative,non15
-neutral,pe16
-positive,oui16
-negative,non16
-neutral,pe17
-positive,oui17
-negative,non17
+﻿type de réplique,réplique
+positive,"On n'a plus à se cacher."
+positive,"Ce n'est pas parce que tu parles que tu es intelligent."
+positive,"J’ai les puces à l’air ! Oh, juste ciel !"
+positive,"Non ! Ça c’est des négociations musclées !"
+positive,"Jedi en mission, reprenez vos discussions."
+positive,"Dieu me débranche ! Des machines qui créent des machines !"
+positive,"En tout cas pas tant que mon mot à dire j’aurai !"
+positive,"Quand 900 ans comme moi tu auras, moins en forme tu seras !"
+positive,"N’essaie pas ! Fais-le, ou ne le fais pas ! Il n’y a pas d’essai."
+positive,"Bip R2 #1"
+positive,"Au secours, Obi-Wan Kenobi. Vous êtes mon seul espoir."
+positive,"Il n'y a plus rien à faire je te domine."
+positive,"S’il y a un point central dans cet univers, tu es sur la planète qui en est le plus éloigné..."
+positive,"Tu es un drôle de petit garçon !"
+positive,"Je ne suis qu'un homme simple essayant de faire mon chemin dans l'univers."
+positive,"Quel manque d'éducation."
+negative,"Vous avez encore beaucoup de choses à apprendre sur les femmes !"
+negative,"Je te hais !"
+negative,"Êtant donnée votre réputation, je vous imaginais un peu plus... vieux."
+negative,"Tout est fini pour vous maitre."
+negative,"Enfin les Jedi n’existent plus !"
+negative,"Exécutez l’ordre 66."
+negative,"Il est inutile de résister, mon fils."
+negative,"C’est un petit magouilleur, un combinard... un vaurien, il va vous plaire."
+negative,"Désolé mon cœur, mais nous n’avons pas le temps pour autre chose..."
+negative,"Si c’est pour l’argent que vous faites ça, alors c’est tout ce que vous recevrez !"
+negative,"Oh j'ai comme un mauvais pressentiment..."
+negative,"Bip R2 #2"
+negative,"Force et contrôle des émotions."
+negative,"Je les hais !"
+negative,"Tu vas rentrer chez toi et penser à ton avenir."
+negative,"Aucune limite à mon pouvoir!"
+negative,"Débarrassez-moi le plancher de cette grosse carpette ambulante !"
+neutral,"Seuls les siths sont aussi absolus"
+neutral,"La mort est une partie naturelle de la vie."
+neutral,"Que la Force soit avec toi..."
+neutral,"Qui est le plus fou des deux, le fou ou le fou qui le suit ?"
+neutral,"Y’a pas de quoi s’exciter..."
